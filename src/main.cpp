@@ -253,13 +253,13 @@ void signal_handler(int signal)
 int main(int argc, char* argv[])
 {
 
-    port = 8080; // Default port
+    PORT = 8080; // Default port
 
     // Parse command-line arguments
     for (int i = 1; i < argc; i++) {
         std::string arg = argv[i];
         if (arg == "--port" && i + 1 < argc) {
-            port = std::stoi(argv[i + 1]);
+            PORT = std::stoi(argv[i + 1]);
             i++; // Skip the next argument since it's the port number
         }
     }

@@ -27,7 +27,7 @@
 #include <chrono>
 #include <iomanip>
 
-#define PORT 443
+int PORT = 8080;
 #define BUFFER_SIZE 8192
 
 std::atomic<bool> server_running(true);
@@ -250,8 +250,20 @@ void signal_handler(int signal)
     }
 }
 
-int main()
+int main(int argc, char* argv[])
 {
+
+    port = 8080; // Default port
+
+    // Parse command-line arguments
+    for (int i = 1; i < argc; i++) {
+        std::string arg = argv[i];
+        if (arg == "--port" && i + 1 < argc) {
+            port = std::stoi(argv[i + 1]);
+            i++; // Skip the next argument since it's the port number
+        }
+    }
+
     std::signal(SIGINT, signal_handler);
     Server server;
     if (!server.init())

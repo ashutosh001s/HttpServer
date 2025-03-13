@@ -27,7 +27,7 @@
 #include <chrono>
 #include <iomanip>
 
-#define PORT 8080
+#define PORT 443
 #define BUFFER_SIZE 8192
 
 std::atomic<bool> server_running(true);
